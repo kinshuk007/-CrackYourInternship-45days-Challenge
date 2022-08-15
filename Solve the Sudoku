@@ -1,0 +1,72 @@
+class Solution 
+{
+    public:
+    //Function to find a solved Sudoku. 
+    
+    bool isSafe(int row,int col,int grid[N][N],int value)
+     {
+    for(int i=0;i<9;i++)
+    {
+    if(grid[row][i]==value)
+    {
+        return 0;
+    }
+    if(grid[i][col]==value)
+    {
+        return 0;
+    }
+    if(grid[3*(row/3) + i/3][3*(col/3) + i%3]==value)
+    {
+        return 0;
+    }
+    }
+    return 1;
+    
+    }
+   
+   
+   
+    bool SolveSudoku(int grid[N][N])  
+    { 
+for(int row=0;row<9;row++)
+       {
+           for(int col=0;col<9;col++)
+           {
+               if(grid[row][col]==0)
+               {
+                   for(int val=1;val<=9;val++)
+                   {
+                       if(isSafe(row,col,grid,val))
+                       {
+                           grid[row][col]=val;
+                           
+                           if(SolveSudoku(grid))
+                           {
+                               return 1;
+                           }
+                           else
+                           {
+                               grid[row][col]=0;
+                           }
+
+                       }
+                   }
+                   return 0;
+               }
+           }
+       }
+       return 1;
+    }
+    
+    
+    //Function to print grids of the Sudoku.
+    void printGrid (int grid[N][N]) 
+    {
+        for(int i=0;i<9;i++){
+            for(int j=0;j<9;j++){
+                cout<<grid[i][j]<<" ";
+            }
+           
+        }
+    }
+};
