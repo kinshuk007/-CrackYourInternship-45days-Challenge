@@ -28,3 +28,6 @@ public:
         return cnt;
     }
 };
+
+
+// You can also use Priority Queue for this in place of vector .
