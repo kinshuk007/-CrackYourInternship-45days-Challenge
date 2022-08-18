@@ -1,0 +1,30 @@
+class Solution {
+public:
+    int minSetSize(vector<int>& arr) {
+        map<int,int>m;
+        vector<int>v;
+        for(int i=0;i<arr.size();i++)
+        {
+            m[arr[i]]++;
+        }
+        for(auto it:m)
+        {
+            v.push_back(it.second);
+        }
+        sort(v.begin(),v.end());
+        int cnt=0;
+        int sum=arr.size();
+       // if(v.size()==1) return 1;
+        for(int i=v.size()-1;i>=0;i--)
+        {
+            sum=sum-v[i];
+            cnt++;
+            if(sum<=arr.size()/2)
+            {
+               return cnt;
+            }
+            
+        }
+        return cnt;
+    }
+};
