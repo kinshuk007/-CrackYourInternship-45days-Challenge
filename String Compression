@@ -1,0 +1,33 @@
+// Leetcode question 
+// Solution in 0ms and Beats 100%
+
+class Solution {
+public:
+    int compress(vector<char>& chars) {
+      string s="";
+      s=s+chars[0];
+      int cnt=1;
+      for(int i=1;i<chars.size();i++){
+          char curr=chars[i];
+          char prev=chars[i-1];
+          if(curr==prev){
+              cnt++;
+          }
+          else {
+              if(cnt>1){
+                  s=s+to_string(cnt);
+                  cnt=1;
+              }
+              s+=curr;
+          }
+      }
+      if(cnt>1){
+          s+=to_string(cnt);
+      }
+      chars.clear();
+      for(int i=0;i<s.length();i++){
+          chars.push_back(s[i]);
+      }
+      return chars.size();
+    }
+};
