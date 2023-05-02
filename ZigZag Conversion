@@ -1,0 +1,22 @@
+class Solution {
+public:
+    string convert(string s, int numRows) {
+        int p,i,j,l;
+        p=2*numRows-2;
+        string k;
+        if(numRows==1) return s;
+        l=s.length();
+        for(i=0;i<numRows;i++)
+        {
+            for(j=i;j<l;j+=p)
+            {
+                k.push_back(s[j]);
+                if(0<i && i<numRows-1 && j+p-2*i<l) k.push_back(s[j+p-2*i]);
+                
+            }
+         
+                
+        }
+        return k;
+    }
+};
