@@ -1,0 +1,27 @@
+// Leetcode Linkedlist question
+
+class Solution {
+public:
+    ListNode* removeNthFromEnd(ListNode* head, int n) {
+        vector<int> v;
+        ListNode* temp=head;
+        while(temp!=NULL){
+            v.push_back(temp->val);
+            temp=temp->next;
+        }
+        ListNode* head1=new ListNode(0);
+        ListNode* temp1=head1;
+        vector<int>::iterator it;
+        int k=v.size();
+        it=v.begin()+k-n;
+        v.erase(it);
+        for(int i=0;i<v.size();i++){
+            cout<<v[i];
+        }
+        for(int val:v){
+            temp1->next=new ListNode(val);
+            temp1=temp1->next;
+        }
+        return head1->next;
+    }
+};
