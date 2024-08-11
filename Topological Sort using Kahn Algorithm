@@ -1,0 +1,35 @@
+// I done topological sort using kahn algorithm it is simply BFS traversal.
+class Solution
+{
+	public:
+	//Function to return list containing vertices in Topological order. 
+	vector<int> topoSort(int V, vector<int> adj[]) 
+	{
+	    int integer[V]={0};
+	    vector<int> v;
+	   
+	    queue<int> q;
+	    for(int i=0;i<V;i++){
+	       for(auto it:adj[i]){
+	           integer[it]++;
+	       }
+	    }
+	    for(int i=0;i<V;i++){
+	        if(integer[i]==0){
+	            q.push(i);
+	        }
+	    }
+	    while(!q.empty()){
+	        int node=q.front();
+	        q.pop();
+	        v.push_back(node);
+	        for(auto it:adj[node]){
+	            integer[it]--;
+	            if(integer[it]==0){
+	                q.push(it);
+	            }
+	        }
+	    }
+	    return v;
+	}
+};
